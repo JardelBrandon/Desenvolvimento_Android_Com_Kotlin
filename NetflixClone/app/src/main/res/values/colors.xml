@@ -6,6 +6,8 @@
 
     <color name="black100">#000000</color>
     <color name="black80">#1a1a1a</color>
+    <color name="black50">#484848</color>
+    <color name="cinzaClaro">#eeeeee</color>
     <color name="vermelho">#ff0000</color>
     <color name="branco">#ffffff</color>
     <color name="laranja">#ff9800</color>
