@@ -8,6 +8,8 @@
     tools:context=".SucosActivity"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar"/>
 
     <TextView
         android:id="@+id/textView"
