@@ -1,0 +1,2 @@
+rootProject.name='EbookDigital'
+include ':app'
