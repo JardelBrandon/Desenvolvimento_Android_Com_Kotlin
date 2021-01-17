@@ -1,5 +1,6 @@
 package com.netflix.netflixclone
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -36,6 +37,7 @@ class FormCadastroActivity : AppCompatActivity() {
 
                 if(it.isSuccessful) {
                     Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    voltarParaTelaDeLogin()
                 }
             }.addOnFailureListener {
 
@@ -50,5 +52,13 @@ class FormCadastroActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+    
+    private fun voltarParaTelaDeLogin() {
+        
+        var intent = Intent(this, FormLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+
     }
 }
