@@ -1,90 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/black80"
-    tools:context=".FormLoginActivity">
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-
-    <EditText
-        android:id="@+id/edit_email"
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text"
-        android:layout_marginTop="100dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:padding="20dp"
-        android:hint="Email"
-        android:textColorHint="@color/branco"
-        android:textColor="@color/branco"
-        />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/black80"
+        tools:context=".FormLoginActivity">
 
-    <EditText
-        android:id="@+id/edit_senha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:padding="20dp"
-        android:hint="Senha"
-        android:textColorHint="@color/branco"
-        android:inputType="textPassword"
-        android:textColor="@color/branco"
-        />
 
-    <TextView
-        android:id="@+id/mensagem_erro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:textColor="@color/laranja"
-        android:textSize="14sp"
-        />
+        <EditText
+            android:id="@+id/edit_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="20dp"
+            android:hint="Email"
+            android:textColorHint="@color/branco"
+            android:textColor="@color/branco"
+            />
 
-    <Button
-        android:id="@+id/bt_entrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/shape_botao"
-        android:text="Entrar"
-        android:fontFamily="sans-serif-black"
-        android:textSize="18sp"
-        android:textColor="@color/branco"
-        android:layout_marginTop="30dp"
-        />
+        <EditText
+            android:id="@+id/edit_senha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="20dp"
+            android:hint="Senha"
+            android:textColorHint="@color/branco"
+            android:inputType="textPassword"
+            android:textColor="@color/branco"
+            />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Precisa de ajuda?"
-        android:textColor="@color/branco"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:layout_marginTop="20dp"
-        />
+        <TextView
+            android:id="@+id/mensagem_erro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/laranja"
+            android:textSize="14sp"
+            />
 
-    <TextView
-        android:id="@+id/text_cadastrar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Novo por aqui? Inscreva-se agora."
-        android:textColor="@color/branco"
-        android:textSize="18sp"
-        android:fontFamily="sans-serif-black"
-        android:gravity="center"
-        android:layout_marginTop="50dp"
-        />
+        <Button
+            android:id="@+id/bt_entrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/shape_botao"
+            android:text="Entrar"
+            android:fontFamily="sans-serif-black"
+            android:textSize="18sp"
+            android:textColor="@color/branco"
+            android:layout_marginTop="30dp"
+            android:padding="15dp"
+            />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Precisa de ajuda?"
+            android:textColor="@color/branco"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            />
+
+        <TextView
+            android:id="@+id/text_cadastrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Novo por aqui? Inscreva-se agora."
+            android:textColor="@color/branco"
+            android:textSize="18sp"
+            android:fontFamily="sans-serif-black"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
+            android:layout_marginBottom="30dp"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
