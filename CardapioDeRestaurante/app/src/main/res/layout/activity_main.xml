@@ -51,7 +51,7 @@
             app:srcCompat="@drawable/sucos" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/sobremesas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
             app:srcCompat="@drawable/sobremesas" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/lanches"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -72,13 +72,13 @@
             app:srcCompat="@drawable/lanches" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/pratosPrincipais"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/lanches"
             app:srcCompat="@drawable/pratos" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

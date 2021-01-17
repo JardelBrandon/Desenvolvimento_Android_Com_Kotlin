@@ -13,6 +13,9 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.hide()
 
         var sucos = sucos
+        var lanches = lanches
+        var sobremesas = sobremesas
+        var pratosPrincipais = pratosPrincipais
 
         sucos.setOnClickListener{
 
@@ -21,5 +24,23 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+        lanches.setOnClickListener{
+
+            var intent = Intent(this, LanchesActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        sobremesas.setOnClickListener {
+            var intent = Intent(this, SobremesasActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        pratosPrincipais.setOnClickListener {
+            var intent = Intent(this, PratosPrincipaisActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
