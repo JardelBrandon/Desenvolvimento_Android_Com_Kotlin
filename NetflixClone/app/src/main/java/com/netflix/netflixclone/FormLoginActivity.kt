@@ -15,6 +15,8 @@ class FormLoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_form_login)
 
+        verificarUsuarioLogado()
+
         var textoCadastrar = text_cadastrar
 
         textoCadastrar.setOnClickListener {
@@ -55,6 +57,15 @@ class FormLoginActivity : AppCompatActivity() {
                         else -> mensagens.setText("Erro ao logar usuário")
                     }
                 }
+        }
+    }
+
+    private fun verificarUsuarioLogado() {
+
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null) {
+            abrirTelaPrincipal()
         }
     }
 
