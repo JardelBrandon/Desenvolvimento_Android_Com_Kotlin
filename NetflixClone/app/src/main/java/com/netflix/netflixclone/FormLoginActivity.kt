@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import kotlinx.android.synthetic.main.activity_form_login.*
 
 class FormLoginActivity : AppCompatActivity() {
@@ -42,6 +44,15 @@ class FormLoginActivity : AppCompatActivity() {
                         Toast.makeText(this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT)
                             .show()
                         abrirTelaPrincipal()
+                    }
+                }.addOnFailureListener {
+
+                    var erro = it
+
+                    when {
+                        erro is FirebaseAuthInvalidCredentialsException -> mensagens.setText("E-mail ou Senha estão incorretos!")
+                        erro is FirebaseNetworkException -> mensagens.setText("Sem conexão com a internet!")
+                        else -> mensagens.setText("Erro ao logar usuário")
                     }
                 }
         }
