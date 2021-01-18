@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
+        android:scaleType="centerCrop"
+        />
+
+    <TextView
+        android:id="@+id/tempo_video"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:text="15:00"
+        android:background="#000000"
+        android:textColor="#ffffff"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="210dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="88dp"
+        android:gravity="center"
+        />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/foto"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@color/colorPrimaryDark"
+        android:layout_below="@id/thumbnail"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="Minecraft: o início de Gameplay"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-black"
+        android:layout_below="@id/thumbnail"
+        android:layout_toEndOf="@id/foto"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:maxLength="50"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minecraft 56 mil visualizações - 8 meses"
+        android:layout_below="@id/titulo"
+        android:layout_toEndOf="@id/foto"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginBottom="15dp"
+        />
+
+</RelativeLayout>
