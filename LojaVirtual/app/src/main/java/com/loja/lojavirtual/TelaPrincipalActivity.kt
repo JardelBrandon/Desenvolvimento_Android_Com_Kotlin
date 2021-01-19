@@ -20,6 +20,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.loja.lojavirtual.Form.FormLoginActivity
+import com.loja.lojavirtual.Fragments.CadastroProdutosActivity
 import com.loja.lojavirtual.Fragments.ProdutosFragment
 import kotlinx.android.synthetic.main.activity_form_login.*
 
@@ -65,6 +66,8 @@ class TelaPrincipalActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         } else if (id == R.id.nav_cadastrar_produtos) {
 
+            var intent = Intent(this, CadastroProdutosActivity::class.java)
+            startActivity(intent)
 
         } else if (id == R.id.nav_contato) {
 
