@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -51,7 +52,10 @@ class FormLoginActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, senha).addOnCompleteListener {
 
                 if (it.isSuccessful) {
-                    abrirTelaPrincipal()
+
+                    frame_layout.visibility = View.VISIBLE
+                    Handler().postDelayed({abrirTelaPrincipal() }, 3000)
+
                 }
             }.addOnFailureListener {
 
