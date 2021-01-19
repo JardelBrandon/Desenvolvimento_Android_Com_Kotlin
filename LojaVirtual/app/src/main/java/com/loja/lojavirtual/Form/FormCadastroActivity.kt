@@ -1,8 +1,10 @@
 package com.loja.lojavirtual.Form
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -28,11 +30,12 @@ class FormCadastroActivity : AppCompatActivity() {
         val senha = edit_senha.text.toString()
         
         if (email.isEmpty() || senha.isEmpty()) {
-            //Toast.makeText(this, "Coloque o seu e-mail e sua senha!", Toast.LENGTH_SHORT).show()
-
-            var snackbar = Snackbar.make(layout_cadastro, "Coloque o seu e-mail e sua senha!", Snackbar.LENGTH_SHORT)
+            var snackbar = Snackbar.make(layout_cadastro, "Coloque o seu e-mail e sua senha!", Snackbar.LENGTH_INDEFINITE)
                 .setBackgroundTint(Color.WHITE)
                 .setTextColor(Color.BLACK)
+                .setAction("Ok", View.OnClickListener {
+
+                })
             snackbar.show()
 
         } else {
@@ -40,14 +43,37 @@ class FormCadastroActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener { 
                 
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+                    var snackbar = Snackbar.make(layout_cadastro, "Cadastro realizado com sucesso!", Snackbar.LENGTH_INDEFINITE)
+                        .setBackgroundTint(Color.WHITE)
+                        .setTextColor(Color.BLACK)
+                        .setAction("Ok", View.OnClickListener {
+
+                            FirebaseAuth.getInstance().signOut()
+                            voltarParaFormLogin()
+
+                        })
+                    snackbar.show()
                 }
             }.addOnFailureListener {
 
-                Toast.makeText(this, "Erro ao cadastrar usuário", Toast.LENGTH_SHORT).show()
+                var snackbar = Snackbar.make(layout_cadastro, "Erro ao cadastrar usuário", Snackbar.LENGTH_INDEFINITE)
+                    .setBackgroundTint(Color.WHITE)
+                    .setTextColor(Color.BLACK)
+                    .setAction("Ok", View.OnClickListener {
+
+                    })
+                snackbar.show()
 
             }
         }
         
+    }
+
+    private fun voltarParaFormLogin() {
+
+        var intent = Intent(this, FormLoginActivity::class.java)
+        startActivity(intent)
+        finish()
+
     }
 }
