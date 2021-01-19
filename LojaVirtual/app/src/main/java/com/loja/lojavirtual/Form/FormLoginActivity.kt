@@ -20,6 +20,8 @@ class FormLoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_form_login)
         supportActionBar!!.hide()
 
+        verificarUsuarioLogado()
+
         text_tela_cadastro.setOnClickListener {
             var intent = Intent(this, FormCadastroActivity::class.java)
             startActivity(intent)
@@ -70,6 +72,16 @@ class FormLoginActivity : AppCompatActivity() {
 
             }
         }
+    }
+
+    private fun verificarUsuarioLogado() {
+
+        val usuarioAtual = FirebaseAuth.getInstance().currentUser
+
+        if (usuarioAtual != null) {
+            abrirTelaPrincipal()
+        }
+
     }
 
     private fun abrirTelaPrincipal() {
