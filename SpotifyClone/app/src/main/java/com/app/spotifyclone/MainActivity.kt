@@ -18,16 +18,19 @@ class MainActivity : AppCompatActivity() {
             R.id.nav_inicio -> {
                 val fragment = HomeFragment.newInstance()
                 addFragment(fragment)
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_buscar -> {
                 val fragment = BuscarFragment.newInstance()
                 addFragment(fragment)
+                return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_biblioteca -> {
                 val fragment = BibliotecaFragment.newInstance()
                 addFragment(fragment)
+                return@OnNavigationItemSelectedListener true
             }
         }
         false
