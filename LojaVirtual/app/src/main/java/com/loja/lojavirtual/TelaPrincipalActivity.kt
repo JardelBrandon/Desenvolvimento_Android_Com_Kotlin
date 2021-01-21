@@ -71,6 +71,7 @@ class TelaPrincipalActivity : AppCompatActivity(), NavigationView.OnNavigationIt
 
         } else if (id == R.id.nav_contato) {
 
+            enviarEmail()
 
         }
 
@@ -103,6 +104,21 @@ class TelaPrincipalActivity : AppCompatActivity(), NavigationView.OnNavigationIt
         var intent = Intent(this, FormLoginActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    private fun enviarEmail() {
+
+        val PACKAGEM_GOOGLEMAIL = "com.google.android.gm"
+        val email = Intent(Intent.ACTION_SEND)
+        email.putExtra(Intent.EXTRA_EMAIL, arrayOf("")) //Enviar e-mail
+        email.putExtra(Intent.EXTRA_SUBJECT, "") // Enviar um assunto de e-mail
+        email.putExtra(Intent.EXTRA_TEXT, "") // Definir um texto para o nosso e-mail
+
+        // Configurações de apps de envio de e-mail
+        email.type = "message/rec822"
+        email.setPackage(PACKAGEM_GOOGLEMAIL)
+        startActivity(Intent.createChooser(email, "Escolha o app de e-mail"))
+
     }
 
 }
