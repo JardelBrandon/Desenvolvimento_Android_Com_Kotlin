@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.dialog.MaterialDialogs
 import com.google.firebase.firestore.FirebaseFirestore
 import com.loja.lojavirtual.Model.Dados
 
@@ -48,16 +50,23 @@ class ProdutosFragment : Fragment() {
                 .setTitle("Formas de Pagamento")
 
             val mAlertDialog = builder.show()
-            mAlertDialog.dismiss()
-            val pagamento = mAlertDialog.form_pagamento.text.toString()
+            mAlertDialog.bt_pagar.setOnClickListener {
 
-            if (pagamento == "249,99") {
+                mAlertDialog.dismiss()
+                val pagamento = mAlertDialog.form_pagamento.text.toString()
 
-                Toast.makeText(context, "Pagamento Concluído", Toast.LENGTH_SHORT).show()
+                if (pagamento == "249,99") {
 
-            } else {
+                    MaterialDialog.Builder(this!!.context!!)
+                        .title("Pagamento Concluído")
+                        .content("Obrigado pela compra! volte sempre.")
+                        .show()
 
-                Toast.makeText(context, "Pagamento Recusado", Toast.LENGTH_SHORT).show()
+                } else {
+
+                    Toast.makeText(context, "Pagamento Recusado", Toast.LENGTH_SHORT).show()
+
+                }
 
             }
 
