@@ -26,7 +26,7 @@
         android:textColor="@color/preto"
         android:textSize="18sp"
         android:maxLength="50"
-        app:layout_constraintStart_toEndOf="@id/foto_produto"
+        android:layout_toEndOf="@id/foto_produto"
         android:layout_marginTop="20dp"
         android:layout_marginStart="10dp"
         />
