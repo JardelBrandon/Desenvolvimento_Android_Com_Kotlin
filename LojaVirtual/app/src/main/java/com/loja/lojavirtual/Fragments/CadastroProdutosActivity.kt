@@ -5,7 +5,11 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.loja.lojavirtual.Model.Dados
 import com.loja.lojavirtual.R
 import kotlinx.android.synthetic.main.activity_cadastro_produtos.*
 import java.util.*
@@ -64,7 +68,24 @@ class CadastroProdutosActivity : AppCompatActivity() {
             referencia.putFile(it)
                 .addOnSuccessListener {
                     referencia.downloadUrl.addOnSuccessListener {
-                        
+
+                        val url = it.toString()
+                        val nome = edit_nome.text.toString()
+                        val preco = edit_preco.text.toString()
+                        val uid = FirebaseAuth.getInstance().uid
+
+                        val produtos = Dados(url, nome, preco)
+                        FirebaseFirestore.getInstance().collection("Produtos")
+                            .add(produtos).addOnSuccessListener {
+
+                                Toast.makeText(this, "Produto cadastrado com sucesso!", Toast.LENGTH_SHORT).show()
+
+                            }.addOnFailureListener {
+
+                               
+
+                            }
+
                     }
                 }
 
