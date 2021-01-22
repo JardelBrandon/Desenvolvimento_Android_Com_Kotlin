@@ -8,9 +8,11 @@ import android.view.ViewGroup
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.app.spotifyclone.Model.Album
 import com.app.spotifyclone.Model.Categoria
 
 import com.app.spotifyclone.R
+import kotlinx.android.synthetic.main.album_item.view.*
 import kotlinx.android.synthetic.main.categoria_item.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
 
@@ -45,6 +47,14 @@ class HomeFragment : Fragment() {
             val categoria = Categoria()
             categoria.titulo = "Categoria$c"
 
+            val albuns: MutableList<Album> = ArrayList()
+            for(a in 0..19) {
+                val album = Album()
+                album.album = R.drawable.spotify
+                albuns.add(album)
+            }
+
+            categoria.albuns = albuns
             categorias.add(categoria)
         }
 
@@ -74,7 +84,30 @@ class HomeFragment : Fragment() {
 
         fun bind(categoria: Categoria) {
             itemView.text_titulo.text = categoria.titulo
+            itemView.recycler_albuns.adapter = AlbunsAdapter((categoria.albuns))
+            itemView.recycler_albuns.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         }
 
+    }
+
+    //---------------------------------------------------------------------------------------------------------------
+
+    private inner class AlbunsAdapter(private val albuns: MutableList<Album>): RecyclerView.Adapter<AlbunsHolder>() {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbunsHolder {
+            return AlbunsHolder(layoutInflater.inflate(R.layout.album_item, parent, false))
+        }
+
+        override fun getItemCount(): Int = albuns.size
+
+        override fun onBindViewHolder(holder: AlbunsHolder, position: Int) {
+            val album = albuns[position]
+            holder.bind(album)
+        }
+    }
+
+    private inner class AlbunsHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+            fun bind(album: Album) {
+                itemView.image_album.setImageResource(album.album)
+            }
     }
 }
