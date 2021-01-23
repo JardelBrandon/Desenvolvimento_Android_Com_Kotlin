@@ -5,16 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.app.spotifyclone.Model.Album
-import com.app.spotifyclone.Model.Categoria
+import com.app.spotifyclone.Model.*
 
 import com.app.spotifyclone.R
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.album_item.view.*
 import kotlinx.android.synthetic.main.categoria_item.view.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
@@ -42,29 +46,35 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val categorias: MutableList<Categoria> = ArrayList()
-        for (c in 0..4) {
-            val categoria = Categoria()
-            categoria.titulo = "Categoria$c"
-
-            val albuns: MutableList<Album> = ArrayList()
-            for(a in 0..19) {
-                val album = Album()
-                //album.album = R.drawable.spotify
-                albuns.add(album)
-            }
-
-            categoria.albuns = albuns
-            categorias.add(categoria)
-        }
-
+        val categorias = arrayListOf<Categoria>()
         categoriaAdapter = CategoriaAdapter(categorias)
         recycler_view_categorias.adapter = categoriaAdapter
         recycler_view_categorias.layoutManager = LinearLayoutManager(context)
+        retrofit().create(SpotifyAPI::class.java)
+            .listCategorias()
+            .enqueue(object : Callback<Categorias> {
+
+                override fun onFailure(call: Call<Categorias>, t: Throwable) {
+                    Toast.makeText(context, "Erro no servidor!", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onResponse(call: Call<Categorias>, response: Response<Categorias>) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+
+                            categoriaAdapter.categorias.clear()
+                            categoriaAdapter.categorias.addAll(it.categorias)
+                            categoriaAdapter.notifyDataSetChanged()
+
+                        }
+                    }
+                }
+
+            })
 
     }
 
-    private inner class CategoriaAdapter(private val categorias: MutableList<Categoria>): RecyclerView.Adapter<CategoriaHolder>() {
+    private inner class CategoriaAdapter(internal val categorias: MutableList<Categoria>): RecyclerView.Adapter<CategoriaHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriaHolder {
             return CategoriaHolder(layoutInflater.inflate(R.layout.categoria_item, parent, false))
@@ -92,7 +102,7 @@ class HomeFragment : Fragment() {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    private inner class AlbunsAdapter(private val albuns: MutableList<Album>): RecyclerView.Adapter<AlbunsHolder>() {
+    private inner class AlbunsAdapter(private val albuns: List<Album>): RecyclerView.Adapter<AlbunsHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbunsHolder {
             return AlbunsHolder(layoutInflater.inflate(R.layout.album_item, parent, false))
         }
@@ -107,7 +117,7 @@ class HomeFragment : Fragment() {
 
     private inner class AlbunsHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             fun bind(album: Album) {
-                //itemView.image_album.setImageResource(album.album)
+                Picasso.get().load(album.album).placeholder(R.drawable.placeholder).fit().into(itemView.image_album)
             }
     }
 }
